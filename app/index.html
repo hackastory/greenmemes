@@ -38,7 +38,7 @@
                 </figcaption>
             </figure>
 
-            <button large v-on:click="again">Make your own meme!</button>
+            <!-- <button large v-on:click="again">Make your own meme!</button> -->
         </section>
 
         <section v-if="state === 'start'">
@@ -55,7 +55,7 @@
             <menu>
                 <li v-for="fact in facts">
                     <button v-on:click="setFact(fact)">
-                        <h3>{{fact.fact}}</h3>
+                        <h3 v-html="fact.fact"></h3>
                         <!-- <h4>{{fact.title}}</h4> -->
                     </button>
 

@@ -32,4 +32,9 @@ section {
     a {
         color: white;
     }
+
+    [state="static"] & {
+        width: 1000px;
+        margin: 0 auto;
+    }
 }

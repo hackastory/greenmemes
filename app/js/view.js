@@ -14,7 +14,8 @@ window.View = (function() {
             var initialImage = {};
 
             if (state.indexOf('json:') === 0) {
-                var data = JSON.parse(state.replace('json:', ''));
+                var data = atob(state.replace('json:', ''));
+                data = JSON.parse(data);
                 initialFact = data.fact;
                 initialEmotion = data.emotion;
                 initialImage = data.image;
@@ -61,7 +62,9 @@ window.View = (function() {
                             image : this.image
                         };
 
-                        window.location.hash = 'json:' + JSON.stringify(json);
+                        var data = btoa(JSON.stringify(json));
+
+                        window.location.hash = 'json:' + data;
                         window.location.reload();
                     },
 

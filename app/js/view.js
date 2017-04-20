@@ -9,6 +9,17 @@ window.View = (function() {
             var self = this;
             var hash = window.location.hash;
             var state = !!hash ? hash.slice(1) : 'start';
+            var initialFact = {};
+            var initialEmotion = {};
+            var initialImage = {};
+
+            if (state.indexOf('json:') === 0) {
+                var data = JSON.parse(state.replace('json:', ''));
+                initialFact = data.fact;
+                initialEmotion = data.emotion;
+                initialImage = data.image;
+                state = 'static';
+            }
 
             this.view = new Vue({
                 el : "main",
@@ -16,7 +27,11 @@ window.View = (function() {
                 methods : {
                     again : function() {
                         window.location.hash = '';
-                        window.location = window.location;
+                        window.location.reload();
+                    },
+
+                    download : function() {
+                        // not yet..
                     },
 
                     go : function(state) {
@@ -37,6 +52,17 @@ window.View = (function() {
                     setImage : function(image) {
                         this.image = image;
                         this.go('fact');
+                    },
+
+                    share : function() {
+                        var json = {
+                            fact : this.fact,
+                            emotion : this.emotion,
+                            image : this.image
+                        };
+
+                        window.location.hash = 'json:' + JSON.stringify(json);
+                        window.location.reload();
                     },
 
                     start : function() {
@@ -60,9 +86,9 @@ window.View = (function() {
                     images : _.shuffle(data.images),
                     emotions : data.emotions,
                     state : state,
-                    fact : {},
-                    image : null,
-                    emotion : null,
+                    fact : initialFact,
+                    image : initialImage,
+                    emotion : initialEmotion,
                     fontsloaded : false
                 }
             });

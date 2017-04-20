@@ -21,6 +21,26 @@
     <main v-cloak
           v-bind:state="state"
           v-bind:fontsloaded="fontsloaded">
+
+        <section v-if="state === 'static'">
+            <figure class="meme"
+                    v-bind:style="memeStyle">
+
+                <img v-bind:src="emotion.image"
+                     class="meme__emotion"
+                     v-if="emotion" />
+
+                <figcaption class="meme__overlay">
+                    <span class="meme__fact">{{fact.fact}}</span>
+                    <a v-bind:href="fact.url"
+                       target="_blank"
+                       class="meme__source">Get more on this fact from {{fact.source}}</a>
+                </figcaption>
+            </figure>
+
+            <button large v-on:click="again">Make your own meme!</button>
+        </section>
+
         <section v-if="state === 'start'">
             <img class="logo" src="img/logo.png" />
             <p v-html="meta.lead"></p>
@@ -90,7 +110,7 @@
 
             <menu v-if="emotion">
                 <button v-on:click="again">Try again?</button>
-                <button v-on:click="share">Share</button>
+                <button v-on:click="share">Get link</button>
                 <button v-on:click="download">Download</button>
             </menu>
         </section>

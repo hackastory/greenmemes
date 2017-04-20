@@ -11,14 +11,19 @@ menu, .menu {
 
     > * {
         margin: 1rem;
-        max-width: 50%;
+        max-width: calc(50% - 2rem);
+    }
+
+    img {
+        width: 100%;
     }
 
     &__emoji > * {
         height: 10rem;
     }
 
-    img {
+    &__emoji img {
+        width: auto;
         height: 100%;
     }
 

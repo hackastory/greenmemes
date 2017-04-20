@@ -6,6 +6,7 @@ window.Model = (function() {
 
         parseData : function(data) {
             data.meta = this.parseMeta(data.meta);
+            data.facts = _.shuffle(data.facts);
             return data;
         }
     });

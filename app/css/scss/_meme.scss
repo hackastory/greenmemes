@@ -33,5 +33,11 @@
         text-transform: uppercase;
         font-size: 1.6rem;
         color: $green;
+        padding: 1rem;
+        cursor: pointer;
+    }
+
+    html.has-mouse &__source:hover {
+        animation: pulse 1s infinite alternate;
     }
 }

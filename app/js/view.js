@@ -26,16 +26,21 @@ window.View = (function() {
 
                     setEmotion : function(emotion) {
                         this.emotion = emotion;
+                        window.scrollTo(0, 0);
                     },
 
                     setFact : function(fact) {
                         this.fact = fact;
-                        this.go('image');
+                        this.go('meme');
                     },
 
                     setImage : function(image) {
                         this.image = image;
-                        this.go('meme');
+                        this.go('fact');
+                    },
+
+                    start : function() {
+                        this.go('image');
                     }
                 },
 
@@ -51,11 +56,11 @@ window.View = (function() {
 
                 data : {
                     meta : data.meta,
-                    facts : data.facts,
-                    images : data.images,
+                    facts : _.shuffle(data.facts),
+                    images : _.shuffle(data.images),
                     emotions : data.emotions,
                     state : state,
-                    fact : null,
+                    fact : {},
                     image : null,
                     emotion : null,
                     fontsloaded : false

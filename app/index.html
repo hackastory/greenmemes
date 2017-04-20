@@ -22,34 +22,37 @@
           v-bind:state="state"
           v-bind:fontsloaded="fontsloaded">
         <section v-if="state === 'start'">
-            <h1>{{meta.title}}</h1>
-            <p>{{meta.lead}}</p>
-            <button large v-on:click="go('fact')">{{meta.start}}</button>
+            <img class="logo" src="img/logo.png" />
+            <p v-html="meta.lead"></p>
+            <button large v-on:click="start">{{meta.start}}</button>
         </section>
 
         <section v-if="state === 'fact'">
             <h2>{{meta.choosefact}}</h2>
 
+            <img class="singleimage" v-bind:src="image.image" />
+
             <menu>
                 <li v-for="fact in facts">
                     <button v-on:click="setFact(fact)">
                         <h3>{{fact.fact}}</h3>
-                        <h4>{{fact.title}}</h4>
+                        <!-- <h4>{{fact.title}}</h4> -->
                     </button>
 
-                    <cite><a v-bind:href="fact.url">Read more from {{fact.source}}</a></cite>
+                    <cite><a target="_blank" v-bind:href="fact.url">Read more from {{fact.source}}</a></cite>
                 </li>
             </menu>
         </section>
 
         <section v-if="state === 'image'">
-            <button v-for="image in images"
-                    v-on:click="setImage(image)"
-            >
-                <img v-bind:src="image.image" />
-                <h3>{{image.title}}</h3>
-                <h4>From {{image.source}}</h4>
-            </button>
+            <menu>
+                <button v-for="fact in facts"
+                        v-on:click="setImage(fact)"
+                >
+                    <img v-bind:src="fact.image" />
+                    <h4>From {{fact.source}}</h4>
+                </button>
+            </menu>
         </section>
 
         <section v-if="state === 'meme'">
@@ -62,7 +65,9 @@
 
                 <figcaption class="meme__overlay">
                     <span class="meme__fact">{{fact.fact}}</span>
-                    <span class="meme__source">Get more on this fact from {{fact.source}}</span>
+                    <a v-bind:href="fact.url"
+                       target="_blank"
+                       class="meme__source">Get more on this fact from {{fact.source}}</a>
                 </figcaption>
             </figure>
 
@@ -100,7 +105,7 @@
     <script src="lib/es6-promise/es6-promise.auto.js"></script>
     <script src="lib/fetch/fetch.js"></script>
     <script src="lib/fontfaceobserver/fontfaceobserver.standalone.js"></script>
-    <script src="lib/lodash/dist/lodash.core.js"></script>
+    <script src="lib/lodash/dist/lodash.js"></script>
 
     <script src="js/conf.js"></script>
     <script src="js/model.js"></script>

@@ -32,7 +32,37 @@ window.View = (function() {
                     },
 
                     download : function() {
-                        // not yet..
+                        this.downloadText = 'Wait a second...';
+
+                        var json = {
+                            fact : this.fact,
+                            emotion : this.emotion,
+                            image : this.image
+                        };
+
+                        var data = btoa(JSON.stringify(json));
+                        var url = 'https://projects.haykranen.nl/greenmemes/#json:' + data;
+
+
+                        var payload = {
+                            width : 1000,
+                            height : 500,
+                            url : url
+                        };
+
+                        var data = new FormData();
+                        data.append("json", JSON.stringify(payload));
+
+                        fetch("http://greenmemes.herokuapp.com/memeify_img", {
+                            method: "POST",
+                            body: data
+                        }).then(function(res) {
+                            return res.json();
+                        }).then(function(data) {
+                            console.log(data);
+                            var url = 'data:application/octet-stream;base64,' + data;
+                            window.location = url;
+                        });
                     },
 
                     go : function(state) {
@@ -91,6 +121,7 @@ window.View = (function() {
                     state : state,
                     fact : initialFact,
                     image : initialImage,
+                    downloadText : 'Download',
                     emotion : initialEmotion,
                     fontsloaded : false
                 }

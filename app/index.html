@@ -67,6 +67,7 @@
         <section v-if="state === 'image'">
             <menu>
                 <button v-for="fact in facts"
+                        v-if="fact.image"
                         v-on:click="setImage(fact)"
                 >
                     <img v-bind:src="fact.image" />
@@ -92,7 +93,7 @@
             </figure>
 
             <h2 v-if="!emotion">{{meta.choosesmiley}}</h2>
-            <h2 v-if="emotion">{{meta.share}}</h2>
+            <h2 v-if="emotion" v-html="meta.share"></h2>
 
             <template v-if="!emotion">
                 {{meta.meme}}
@@ -111,7 +112,7 @@
             <menu v-if="emotion">
                 <button v-on:click="again">Try again?</button>
                 <button v-on:click="share">Get link</button>
-                <button v-on:click="download">Download</button>
+                <button v-on:click="download">{{downloadText}}</button>
             </menu>
         </section>
     </main>

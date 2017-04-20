@@ -14,8 +14,14 @@ window.View = (function() {
                 el : "main",
 
                 methods : {
+                    again : function() {
+                        window.location.hash = '';
+                        window.location = window.location;
+                    },
+
                     go : function(state) {
                         this.state = state;
+                        window.scrollTo(0, 0);
                     },
 
                     setEmotion : function(emotion) {
@@ -24,12 +30,22 @@ window.View = (function() {
 
                     setFact : function(fact) {
                         this.fact = fact;
-                        this.go('fact');
+                        this.go('image');
                     },
 
                     setImage : function(image) {
                         this.image = image;
-                        this.go('emotion');
+                        this.go('meme');
+                    }
+                },
+
+                computed : {
+                    memeStyle : function() {
+                        if (this.image) {
+                            return {
+                                'background-image' : 'url(' + this.image.image + ')'
+                            }
+                        }
                     }
                 },
 

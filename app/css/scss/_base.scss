@@ -10,12 +10,17 @@ main[fontsloaded] {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: $font-serif;
+    font-family: $font-sansserif;
     font-weight: bold;
 }
 
 a {
     text-decoration: none;
+}
+
+.center {
+    @include flex-center;
+    @include child-margins($spacing);
 }
 
 main[v-cloak] {

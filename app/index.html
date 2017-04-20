@@ -53,17 +53,35 @@
         </section>
 
         <section v-if="state === 'meme'">
-            <div class="meme"></div>
+            <figure class="meme"
+                 v-bind:style="memeStyle">
 
-            <h2>{{meta.choosesmiley}}</h2>
+                <img v-bind:src="emotion.image"
+                     class="meme__emotion"
+                     v-if="emotion" />
 
-            <menu v-if="!emotion">
-                <button v-for="emotion in emotions"
-                        v-on:click="setEmotion(emotion)">
-                    <img v-bind:src="emotion.image" />
-                    {{emotion.title}}
-                </button>
-            </menu>
+                <figcaption class="meme__overlay">
+                    <span class="meme__fact">{{fact.fact}}</span>
+                    <span class="meme__source">Get more on this fact from {{fact.source}}</span>
+                </figcaption>
+            </figure>
+
+            <h2 v-if="!emotion">{{meta.choosesmiley}}</h2>
+            <h2 v-if="emotion">{{meta.share}}</h2>
+
+            <template v-if="!emotion">
+                {{meta.meme}}
+
+                <menu class="menu__emoji">
+                    <button v-for="emotion in emotions"
+                            v-on:click="setEmotion(emotion)">
+                        <div class="center">
+                            <img v-bind:src="emotion.image" />
+                            {{emotion.title}}
+                        </div>
+                    </button>
+                </menu>
+            </template>
 
             <menu v-if="emotion">
                 <button v-on:click="again">Try again?</button>

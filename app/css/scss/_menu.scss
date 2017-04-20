@@ -1,6 +1,7 @@
-menu {
+menu, .menu {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 
     li {
         list-style: none;
@@ -11,5 +12,17 @@ menu {
     > * {
         margin: 1rem;
         max-width: 50%;
+    }
+
+    &__emoji > * {
+        height: 10rem;
+    }
+
+    img {
+        height: 100%;
+    }
+
+    .center {
+        @include wh(100%, 100%);
     }
 }

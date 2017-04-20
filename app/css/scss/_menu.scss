@@ -1,0 +1,15 @@
+menu {
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+        list-style: none;
+        @include flex-center;
+        @include child-margins($spacing);
+    }
+
+    > * {
+        margin: 1rem;
+        max-width: 50%;
+    }
+}

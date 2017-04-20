@@ -1,0 +1,35 @@
+section {
+    max-width: 80rem;
+    margin: $spacing auto;
+    @include child-margins($spacing);
+    text-align: center;
+
+    h1 {
+        font-size: 8rem;
+    }
+
+    h2 {
+        font-size: 5rem;
+    }
+
+    h3 {
+        font-size: 3rem;
+    }
+
+    h4 {
+        font-size: 2.6rem;
+        font-style: italic;
+    }
+
+    p {
+        font-size: 2.6rem;
+    }
+
+    cite {
+        font-size: 2rem;
+    }
+
+    a {
+        color: white;
+    }
+}

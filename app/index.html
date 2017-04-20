@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="nl" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Social tags -->
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+
+    <meta property="og:site_name" content="">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="">
+
+    <link rel="stylesheet" href="css/style.css">
+    <title>Green Memes</title>
+</head>
+<body data-track-app="greenmemes">
+    <main v-cloak
+          v-bind:state="state"
+          v-bind:fontsloaded="fontsloaded">
+        <section v-if="state === 'start'">
+            <h1>{{meta.title}}</h1>
+            <p>{{meta.lead}}</p>
+            <button large v-on:click="go('fact')">{{meta.start}}</button>
+        </section>
+
+        <section v-if="state === 'fact'">
+            <h2>{{meta.choosefact}}</h2>
+
+            <menu>
+                <li v-for="fact in facts">
+                    <button v-on:click="setFact(fact)">
+                        <h3>{{fact.fact}}</h3>
+                        <h4>{{fact.title}}</h4>
+                    </button>
+
+                    <cite><a v-bind:href="fact.url">Read more from {{fact.source}}</a></cite>
+                </li>
+            </menu>
+        </section>
+
+        <section v-if="state === 'image'">
+            <button v-for="image in images"
+                    v-on:click="setImage(image)"
+            >
+                <img v-bind:src="image.image" />
+                <h3>{{image.title}}</h3>
+                <h4>From {{image.source}}</h4>
+            </button>
+        </section>
+
+        <section v-if="state === 'meme'">
+            <div class="meme"></div>
+
+            <h2>{{meta.choosesmiley}}</h2>
+
+            <menu v-if="!emotion">
+                <button v-for="emotion in emotions"
+                        v-on:click="setEmotion(emotion)">
+                    <img v-bind:src="emotion.image" />
+                    {{emotion.title}}
+                </button>
+            </menu>
+
+            <menu v-if="emotion">
+                <button v-on:click="again">Try again?</button>
+                <button v-on:click="share">Share</button>
+                <button v-on:click="download">Download</button>
+            </menu>
+        </section>
+    </main>
+
+    <!-- build:js js/dist.js -->
+    <script src="lib/fastclick/lib/fastclick.js"></script>
+    <script src="lib/dataplugger/dataplugger.browser.js"></script>
+    <script src="lib/vklib/src/vk.js"></script>
+    <script src="lib/vklib/src/fieldbookmodel.js"></script>
+    <script src="lib/vue/dist/vue.js"></script>
+    <script src="lib/es6-promise/es6-promise.auto.js"></script>
+    <script src="lib/fetch/fetch.js"></script>
+    <script src="lib/fontfaceobserver/fontfaceobserver.standalone.js"></script>
+    <script src="lib/lodash/dist/lodash.core.js"></script>
+
+    <script src="js/conf.js"></script>
+    <script src="js/model.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/app.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

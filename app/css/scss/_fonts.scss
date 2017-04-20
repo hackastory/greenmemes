@@ -1,0 +1,56 @@
+// Weights are taken from < https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Common_weight_name_mapping >
+$weight-extralight: 200;
+$weight-light: 300;
+$weight-semibold: 600;
+$weight-black: 900;
+
+// Fonts
+$font-source: "Source", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-sourceserif: "Source Serif", "Georgia", "Times New Roman", Times, serif;
+$font-fallback: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-serif: $font-sourceserif;
+$font-sansserif: $font-source;
+
+// Source Sans comes in both WOFF and WOFF2
+$source-font: (
+    (extralight, $weight-extralight, normal),
+    (extralightitalic, $weight-extralight, italic),
+    (light, $weight-light, normal),
+    (lightitalic, $weight-light, italic),
+    (regular, normal, normal),
+    (italic, normal, italic),
+    (semibold, $weight-semibold, normal),
+    (bold, bold, normal),
+    (bolditalic, bold, italic),
+    (black, $weight-black, normal),
+    (blackitalic, $weight-black, italic)
+);
+
+// Source Serif, only WOFF
+$sourceserif-font: (
+    (extralight, $weight-extralight, normal),
+    (light, $weight-light, normal),
+    (regular, normal, normal),
+    (semibold, $weight-semibold, normal),
+    (bold, bold, normal),
+    (black, $weight-black, normal)
+);
+
+@each $id, $weight, $style in $source-font {
+    @font-face {
+        font-family: 'Source';
+        font-weight: $weight;
+        font-style: $style;
+        src: url('../fonts/source-#{$id}.woff2') format('woff2'),
+             url('../fonts/source-#{$id}.woff') format('woff');
+    }
+}
+
+@each $id, $weight, $style in $source-font {
+    @font-face {
+        font-family: 'Source Serif';
+        font-weight: $weight;
+        font-style: $style;
+        src: url('../fonts/sourceserif-#{$id}.woff') format('woff');
+    }
+}

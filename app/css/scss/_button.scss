@@ -1,0 +1,11 @@
+button {
+    cursor: pointer;
+    background: white;
+    color: green;
+    font-size: 2rem;
+    padding: $spacing/2 $spacing;
+
+    &[large] {
+        font-size: 4rem;
+    }
+}

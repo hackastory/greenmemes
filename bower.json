@@ -1,0 +1,26 @@
+{
+  "name": "vk-template",
+  "version": "0.0.0",
+  "authors": [
+    "Hay Kranen <huskyr@gmail.com>"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "valenski": "*",
+    "fastclick": "*",
+    "vklib": "git@bitbucket.org:hayify/vklib.git",
+    "vue": "^2.2.6",
+    "dataplugger": "^0.3.0",
+    "fetch": "^2.0.3",
+    "es6-promise": "^4.0.5",
+    "fontfaceobserver": "^2.0.9",
+    "lodash": "^4.17.4"
+  }
+}

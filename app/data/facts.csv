@@ -1,0 +1,4 @@
+id,record_url,fact_id,fact,title,url,source
+1,https://fieldbook.com/records/58f8ff4822106603009041bb,fact 1,Polar bears,Polar bears title,http://imgur.com/gallery/sLc8FWD,NASA
+2,https://fieldbook.com/records/58f8fff022106603009041c6,fact 2,Kittens,title,http://imgur.com/gallery/sLc8FWD,NYT
+3,https://fieldbook.com/records/58f8fff16e450303006e90de,fact 3,Turtles,title,http://imgur.com/gallery/sLc8FWD,Breitbart

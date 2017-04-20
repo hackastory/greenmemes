@@ -9,9 +9,9 @@ window.View = (function() {
             var self = this;
             var hash = window.location.hash;
             var state = !!hash ? hash.slice(1) : 'start';
-            var initialFact = {};
-            var initialEmotion = {};
-            var initialImage = {};
+            var initialFact = null;
+            var initialEmotion = null;
+            var initialImage = null;
 
             if (state.indexOf('json:') === 0) {
                 var data = atob(state.replace('json:', ''));
@@ -73,6 +73,15 @@ window.View = (function() {
                     setEmotion : function(emotion) {
                         this.emotion = emotion;
                         window.scrollTo(0, 0);
+
+                        var json = {
+                            fact : this.fact,
+                            emotion : this.emotion,
+                            image : this.image
+                        };
+
+                        var data = btoa(JSON.stringify(json));
+                        this.location = 'https://projects.haykranen.nl/greenmemes/#json:' + data;
                     },
 
                     setFact : function(fact) {
@@ -123,6 +132,7 @@ window.View = (function() {
                     image : initialImage,
                     downloadText : 'Download',
                     emotion : initialEmotion,
+                    location : window.location.href,
                     fontsloaded : false
                 }
             });

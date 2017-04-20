@@ -30,4 +30,8 @@ menu, .menu {
     .center {
         @include wh(100%, 100%);
     }
+
+    &__share img {
+        height: 7rem;
+    }
 }
